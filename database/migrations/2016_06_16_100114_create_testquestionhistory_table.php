@@ -27,6 +27,6 @@ class CreateTestquestionhistoryTable extends Migration
      */
     public function down()
     {
-        Schema::drop('testquestinhistory');
+        Schema::drop('testquestionhistory');
     }
 }
