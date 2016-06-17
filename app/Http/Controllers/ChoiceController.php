@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Repositories\ChoiceRepository;
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
+use App\Http\Requests\ChoiceRequest;
 
 class ChoiceController extends Controller
 {

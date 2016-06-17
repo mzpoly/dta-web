@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repositories\TestHistoryQRepository;
 
-use App\Http\Requests;
+use App\Http\Requests\TestHistoryQRequest;
 
 class TestHistoryQController extends Controller
 {

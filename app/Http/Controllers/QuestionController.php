@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repositories\QuestionRepository;
 
-use App\Http\Requests;
+use App\Http\Requests\QuestionRequest;
 
 class QuestionController extends Controller
 {
