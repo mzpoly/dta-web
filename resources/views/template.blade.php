@@ -25,6 +25,7 @@
     <![endif]-->
 </head>
 <body>
+<script src="js/fblogin.js"></script>
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
@@ -40,7 +41,8 @@
                 <li><a href="myscores">Scores</a></li>
             </ul>
             <ul class="nav navbar-nav pull-right">
-                <li><a href="loginfb">FBLOGIN</a></li>
+                <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+                </fb:login-button>
             </ul>
         </div>
     </div>
