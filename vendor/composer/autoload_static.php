@@ -16,6 +16,7 @@ class ComposerStaticInitc4bfb1668c6d2242abaad16dcc9008cc
         '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
+        'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -79,6 +80,7 @@ class ComposerStaticInitc4bfb1668c6d2242abaad16dcc9008cc
         ),
         'C' => 
         array (
+            'Collective\\Html\\' => 16,
             'ClassPreloader\\' => 15,
             'Carbon\\' => 7,
         ),
@@ -203,6 +205,10 @@ class ComposerStaticInitc4bfb1668c6d2242abaad16dcc9008cc
         array (
             0 => __DIR__ . '/..' . '/doctrine/instantiator/src/Doctrine/Instantiator',
         ),
+        'Collective\\Html\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laravelcollective/html/src',
+        ),
         'ClassPreloader\\' => 
         array (
             0 => __DIR__ . '/..' . '/classpreloader/classpreloader/src',
@@ -264,13 +270,18 @@ class ComposerStaticInitc4bfb1668c6d2242abaad16dcc9008cc
     );
 
     public static $classMap = array (
+        'App\\Choice' => __DIR__ . '/../..' . '/app/Choice.php',
         'App\\Console\\Commands\\Inspire' => __DIR__ . '/../..' . '/app/Console/Commands/Inspire.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Events\\Event' => __DIR__ . '/../..' . '/app/Events/Event.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Auth\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/AuthController.php',
         'App\\Http\\Controllers\\Auth\\PasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/PasswordController.php',
+        'App\\Http\\Controllers\\ChoiceController' => __DIR__ . '/../..' . '/app/Http/Controllers/ChoiceController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\QuestionController' => __DIR__ . '/../..' . '/app/Http/Controllers/QuestionController.php',
+        'App\\Http\\Controllers\\TestHistoryQController' => __DIR__ . '/../..' . '/app/Http/Controllers/TestHistoryQController.php',
+        'App\\Http\\Controllers\\TestHistoryUController' => __DIR__ . '/../..' . '/app/Http/Controllers/TestHistoryUController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
@@ -286,6 +297,17 @@ class ComposerStaticInitc4bfb1668c6d2242abaad16dcc9008cc
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
+        'App\\Question' => __DIR__ . '/../..' . '/app/Question.php',
+        'App\\Repositories\\ChoiceRepository' => __DIR__ . '/../..' . '/app/Repositories/ChoiceRepository.php',
+        'App\\Repositories\\ChoiceRepositoryInterface' => __DIR__ . '/../..' . '/app/Repositories/ChoiceRepositoryInterface.php',
+        'App\\Repositories\\QuestionRepository' => __DIR__ . '/../..' . '/app/Repositories/QuestionRepository.php',
+        'App\\Repositories\\QuestionRepositoryInterface' => __DIR__ . '/../..' . '/app/Repositories/QuestionRepositoryInterface.php',
+        'App\\Repositories\\TestHistoryQRepository' => __DIR__ . '/../..' . '/app/Repositories/TestHistoryQRepository.php',
+        'App\\Repositories\\TestHistoryQRepositoryInterface' => __DIR__ . '/../..' . '/app/Repositories/TestHistoryQRepositoryInterface.php',
+        'App\\Repositories\\TestHistoryURepository' => __DIR__ . '/../..' . '/app/Repositories/TestHistoryURepository.php',
+        'App\\Repositories\\TestHistoryURepositoryInterface' => __DIR__ . '/../..' . '/app/Repositories/TestHistoryURepositoryInterface.php',
+        'App\\TestHistoryQ' => __DIR__ . '/../..' . '/app/TestHistoryQ.php',
+        'App\\TestHistoryU' => __DIR__ . '/../..' . '/app/TestHistoryU.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',
         'Carbon\\CarbonInterval' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
@@ -304,8 +326,17 @@ class ComposerStaticInitc4bfb1668c6d2242abaad16dcc9008cc
         'ClassPreloader\\Parser\\FileVisitor' => __DIR__ . '/..' . '/classpreloader/classpreloader/src/Parser/FileVisitor.php',
         'ClassPreloader\\Parser\\NodeTraverser' => __DIR__ . '/..' . '/classpreloader/classpreloader/src/Parser/NodeTraverser.php',
         'ClassPreloader\\Parser\\StrictTypesVisitor' => __DIR__ . '/..' . '/classpreloader/classpreloader/src/Parser/StrictTypesVisitor.php',
-        'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
-        'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
+        'Collective\\Html\\Componentable' => __DIR__ . '/..' . '/laravelcollective/html/src/Componentable.php',
+        'Collective\\Html\\Eloquent\\FormAccessible' => __DIR__ . '/..' . '/laravelcollective/html/src/Eloquent/FormAccessible.php',
+        'Collective\\Html\\FormBuilder' => __DIR__ . '/..' . '/laravelcollective/html/src/FormBuilder.php',
+        'Collective\\Html\\FormFacade' => __DIR__ . '/..' . '/laravelcollective/html/src/FormFacade.php',
+        'Collective\\Html\\HtmlBuilder' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlBuilder.php',
+        'Collective\\Html\\HtmlFacade' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlFacade.php',
+        'Collective\\Html\\HtmlServiceProvider' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlServiceProvider.php',
+        'CreateChoicesTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_16_100038_create_choices_table.php',
+        'CreateQuestionsTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_16_094716_create_questions_table.php',
+        'CreateTestquestionhistoryTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_16_100114_create_testquestionhistory_table.php',
+        'CreateTestuserhistoryTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_16_100236_create_testuserhistory_table.php',
         'Cron\\AbstractField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/AbstractField.php',
         'Cron\\CronExpression' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/CronExpression.php',
         'Cron\\DayOfMonthField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/DayOfMonthField.php',
