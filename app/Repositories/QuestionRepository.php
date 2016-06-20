@@ -18,7 +18,7 @@ class QuestionRepository implements  QuestionRepositoryInterface
     public function add($questiontype,$questiontext,$nbofchoices,$imageurl,$rightanswer)
     {
         $question = new $this->question;
-        $question->questiontype=questiontype;
+        $question->questiontype= $questiontype;
         $question->questiontext = $questiontext;
         $question->nbofchoices=$nbofchoices;
         $question->imageurl = empty($imageurl) ? null : $imageurl;
@@ -28,9 +28,18 @@ class QuestionRepository implements  QuestionRepositoryInterface
 
     public function remove($questionid)
     {
-        $question = question::where('questionid',$questionid);
+        $question = Question::where('id',$questionid);
         $question->delete();
     }
-
+    public function modify($questionid,$questiontype,$questiontext,$nbofchoices,$imageurl,$rightanswer)
+    {
+        $question =Question::where('id',$questionid);
+        $question->questiontype= $questiontype;
+        $question->questiontext = $questiontext;
+        $question->nbofchoices=$nbofchoices;
+        $question->imageurl = empty($imageurl) ? null : $imageurl;
+        $question->rightanswer=$rightanswer;
+        $question->save();
+    }
    
 }
