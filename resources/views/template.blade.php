@@ -8,14 +8,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Fixed Top Navbar Example for Bootstrap</title>
+    <title>@yield('title')</title>
 
     <!-- Bootstrap core CSS -->
 {{ Html::style('css/bootstrap.min.css') }}
 
-
-<!-- Custom styles for this template -->
-    <link href="navbar-fixed-top.css" rel="stylesheet">
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -26,7 +23,7 @@
 </head>
 <body>
 <script src="js/fblogin.js"></script>
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<div class="navbar navbar-inverse navbar-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarreduced">
@@ -41,14 +38,15 @@
                 <li><a href="myscores">Scores</a></li>
             </ul>
             <ul class="nav navbar-nav pull-right">
-                <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-                </fb:login-button>
+                <li><fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+                </fb:login-button></li>
+                <li><a href="login">Login</a></li>
             </ul>
         </div>
     </div>
 </div>
 <div>
-   <!--  -->
+  @yield('content')
 </div>
 <div style="text-align:center">
     Foot-note
