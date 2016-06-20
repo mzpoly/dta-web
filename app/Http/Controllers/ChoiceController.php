@@ -11,7 +11,7 @@ class ChoiceController extends Controller
 {
     public function add(ChoiceRequest $request, ChoiceRepository $choiceRepository)
     {
-        $choiceRepository->add($request->input('choice'));
+        $choiceRepository->add($request->input('questionid'),$request->input('answer'),$request->input('choicenumber'));
         return view('choice_added');
     }
 

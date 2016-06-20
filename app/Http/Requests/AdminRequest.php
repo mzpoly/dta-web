@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class ProfilequestionsRequest extends Request
+class AdminRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,8 @@ class ProfilequestionsRequest extends Request
     public function rules()
     {
         return [
-            'numberofquestions' => 'required|numeric',
-            'questions' => 'required'
+            'login' => 'required',
+            'password' => 'required'
         ];
     }
 }

@@ -16,3 +16,6 @@ Route::get('/', function () {
 });
 Route::get('aboutthetest',function(){return view('aboutthetest');});
 Route::get('passthetest',function(){return view('passthetest');});
+
+Route::get('login','AdminController@logInForm');
+Route::post('login','AdminController@tryLogIn');

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTestquestionhistoryTable extends Migration
+class CreateAdminTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,10 @@ class CreateTestquestionhistoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('testquestionhistory',function(Blueprint $table){
+        Schema::create('admins',function(Blueprint $table){
             $table->increments('id');
-            $table->integer('testid');
-            $table->integer('questionid');
-            $table->integer('questionnumber');
-            $table->integer('usersanswer')->nullable();
+            $table->string('login',64)->unique();
+            $table->string('password',64);
         });
     }
 
@@ -28,6 +26,6 @@ class CreateTestquestionhistoryTable extends Migration
      */
     public function down()
     {
-        Schema::drop('testquestionhistory');
+        Schema::drop('admins');
     }
 }

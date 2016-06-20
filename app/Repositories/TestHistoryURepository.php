@@ -2,8 +2,8 @@
 
 namespace App\Repositories;
 
-use App\TestHistoryQ;
-use App\TestHistoryU;
+use App\Models\TestHistoryQ;
+use App\Models\TestHistoryU;
 
 class TestHistoryURepository implements TestHistoryURepositoryInterface{
 

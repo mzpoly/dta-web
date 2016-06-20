@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\TestHistoryQ;
+use App\Models\TestHistoryQ;
 
 class TestHistoryQRepository implements TestHistoryQRepositoryInterface
 {

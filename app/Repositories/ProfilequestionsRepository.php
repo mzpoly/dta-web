@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Profilequestions;
+use App\Models\Profilequestions;
 
 class ProfilequestionsRepository implements ProfilequestionsRepositoryInterface
 {

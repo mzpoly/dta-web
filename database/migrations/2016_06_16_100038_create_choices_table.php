@@ -13,6 +13,7 @@ class CreateChoicesTable extends Migration
     public function up()
     {
         Schema::create('choices',function(Blueprint $table){
+            $table->increments('id');
             $table->integer('questionid');
             $table->text('answer');
             $table->integer('choicenumber');
