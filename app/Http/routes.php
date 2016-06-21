@@ -29,3 +29,12 @@ Route::get('/passthetest', ['middleware' => 'auth',function() {
 
 Route::get('/create_question',['middleware' => 'auth','uses' => 'QuestionController@create']);
 Route::post('/create_question',['middleware' => 'auth','uses' => 'QuestionController@questionCreated']);
+
+//AUTH AS FB USER
+Route::get('/myscores', ['middleware' => 'auth','uses' => 'TestUserHController@show']);
+Route::post('/testquestion',['middleware'=>'auth','uses' => 'QuestionController@initTest']);
+Route::post('/testquestion',['middleware'=>'auth','uses' => 'QuestionController@nextQuestion']);
+
+Route::get('/users',['middleware'=>'auth','uses' => 'DriverController@getAllDrivers']);
+Route::get('/questionadmin', ['middleware' => 'auth','uses'=>'QuestionController@getAllQuestions']);
+Route::get('/loginfb', 'DriverController@nicoLogin');

@@ -19,6 +19,7 @@ class CreateQuestionsTable extends Migration
             $table->integer('nbofchoices');
             $table->string('imageurl',64)->nullable();
             $table->integer('rightanswer');
+            $table->string('testtype');
         });
     }
 

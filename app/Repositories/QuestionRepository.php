@@ -15,7 +15,7 @@ class QuestionRepository implements  QuestionRepositoryInterface
 
     }
 
-    public function add($questiontype,$questiontext,$nbofchoices,$imageurl,$rightanswer)
+    public function add($questiontype,$questiontext,$nbofchoices,$imageurl,$rightanswer,$testtype)
     {
         $question = new $this->question;
         $question->questiontype= $questiontype;
@@ -23,6 +23,7 @@ class QuestionRepository implements  QuestionRepositoryInterface
         $question->nbofchoices=$nbofchoices;
         $question->imageurl = empty($imageurl) ? null : $imageurl;
         $question->rightanswer=$rightanswer;
+        $question->testtype = $testtype;
         $question->save();
         return $question;
     }
@@ -32,7 +33,7 @@ class QuestionRepository implements  QuestionRepositoryInterface
         $question = Question::where('id',$questionid);
         $question->delete();
     }
-    public function modify($questionid,$questiontype,$questiontext,$nbofchoices,$imageurl,$rightanswer)
+    public function modify($questionid,$questiontype,$questiontext,$nbofchoices,$imageurl,$rightanswer,$testtype)
     {
         $question =Question::where('id',$questionid);
         $question->questiontype= $questiontype;
@@ -40,7 +41,13 @@ class QuestionRepository implements  QuestionRepositoryInterface
         $question->nbofchoices=$nbofchoices;
         $question->imageurl = empty($imageurl) ? null : $imageurl;
         $question->rightanswer=$rightanswer;
+        $question->testtype = $testtype;
         $question->save();
     }
-   
+
+    public function getAllQuestions()
+    {
+        return Question::all();
+    }
+
 }

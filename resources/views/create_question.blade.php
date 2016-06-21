@@ -14,15 +14,29 @@
                 <br>
 
 
-                <textarea name="question" rows = "5" cols ="45" class="form-control" placeholder="write the question here: " required></textarea>
+                <textarea name="questiontext" rows = "5" cols ="45" class="form-control" placeholder="write the question here: " required></textarea>
 
                 <br> <br>
-                <select name="questiontype">
-                    <option value="crime">Crime</option>
-                    <option value="accidents">Accident</option>
-                    <option value="speedlimit">Speed limitation</option>
-                    <option value="other">Other</option>
-                </select><br>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label>Test type : </label>
+                        <select class="form-control" name="testtype">
+                            <option value="BTT">BTT</option>
+                            <option value="FTT">FTT</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label>Question type : </label>
+                        <select class="form-control" name="questiontype">
+                            <option value="crime">Crime</option>
+                            <option value="accidents">Accident</option>
+                            <option value="speedlimit">Speed limitation</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div><br>
                 <input checked ="checked" type="radio" name="nbq" onclick="handleClick(this);" value="3" />  3 possible anwers  <br>
                 <input type="radio" name="nbq" onclick="handleClick(this);" value="4" />  4 possible anwers <br>
                 <input type="radio" name="nbq" onclick="handleClick(this);" value="5" />  5 possible anwers <br><br>
@@ -61,15 +75,18 @@
 
                 </script>
                 <div class="row">
-                    <label>Right answer : </label>
-                    <select name="rightanswer">
-                        <option value="1">A</option>
-                        <option value="2">B</option>
-                        <option value="3">C</option>
-                        <option value="4">D</option>
-                        <option value="5">E</option>
-                    </select>
+                    <div class="col-sm-3">
+                        <label>Right answer : </label>
+                        <select class="form-control" name="rightanswer">
+                            <option value="1">A</option>
+                            <option value="2">B</option>
+                            <option value="3">C</option>
+                            <option value="4">D</option>
+                            <option value="5">E</option>
+                        </select>
+                    </div>
                 </div>
+
                 <br>
                 <div class="row">
                     <input type="file" name="imageurl" /> <div id="prev"></div>

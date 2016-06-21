@@ -14,12 +14,13 @@ class DriverRepository implements DriverRepositoryInterface
 		$this->driver = $driver;
 	}
 
-	public function add($fblogin,$email,$profilequestions)
+	public function add($fblogin,$email,$profilequestions,$date)
 	{
 		$driver = new $this->driver;
 		$driver->fblogin = $fblogin;
 		$driver->email = $email;
 		$driver->profilequestions = $profilequestions;
+		$driver->date=$date;
 		$driver->save();
 	}
 
@@ -40,6 +41,10 @@ class DriverRepository implements DriverRepositoryInterface
 		$driver = Driver::where('fblogin',$fblogin);
 		$driver->profilequestions = $profilequestions;
 		$driver->save();
+	}
+	public function getAllDrivers()
+	{
+		return Driver::all();
 	}
 
 }
