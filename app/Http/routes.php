@@ -28,4 +28,13 @@ Route::get('scores', function(){
     return view('myscores');
 });
 
+Route::get('question/{nbquestion}/{questiontype}', function($nbquestion, $questiontype){
+    return view('template1')->with(['nbques' => $nbquestion , 'type' => $questiontype ]);
+});
+
+
+Route::get('checkquestion', function(){
+    return view('checkquestion');
+});
+
 //Route::get('newquestion', 'QuestionController@postForm');
