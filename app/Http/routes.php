@@ -14,8 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('aboutthetest',function(){return view('aboutthetest');});
-Route::get('passthetest',function(){return view('passthetest');});
 
-Route::get('login','AdminController@logInForm');
-Route::post('login','AdminController@tryLogIn');
+Route::auth();
+
+Route::get('/home', 'HomeController@index');

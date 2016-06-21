@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Models\Choice;
+use App\Choice;
 
 class ChoiceRepository implements  ChoiceRepositoryInterface
 {

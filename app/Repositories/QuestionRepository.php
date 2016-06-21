@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Models\Question;
+use App\Question;
 
 class QuestionRepository implements  QuestionRepositoryInterface
 {

@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitc4bfb1668c6d2242abaad16dcc9008cc
+class ComposerStaticInit77a5a4d8d6e369a7586f8492ffccdd9f
 {
     public static $files = array (
         '1d1b89d124cc9cb8219922c9d5569199' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest.php',
@@ -270,12 +270,13 @@ class ComposerStaticInitc4bfb1668c6d2242abaad16dcc9008cc
     );
 
     public static $classMap = array (
-        'CreateAdminTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_20_070657_create_admin_table.php',
-        'CreateChoicesTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_16_100038_create_choices_table.php',
-        'CreateProfilequestionsTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_16_100633_create_profilequestions_table.php',
-        'CreateQuestionsTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_16_094716_create_questions_table.php',
-        'CreateTestquestionhistoryTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_16_100114_create_testquestionhistory_table.php',
-        'CreateTestuserhistoryTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_16_100236_create_testuserhistory_table.php',
+        'CreateChoicesTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_21_014806_create_choices_table.php',
+        'CreateDriversTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_21_014914_create_drivers_table.php',
+        'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+        'CreateProfilequestionsTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_21_014856_create_profilequestions_table.php',
+        'CreateQuestionsTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_21_014822_create_questions_table.php',
+        'CreateTestquestionhistoryTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_21_014753_create_testquestionhistory_table.php',
+        'CreateTestuserhistoryTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_21_014838_create_testuserhistory_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
@@ -788,10 +789,10 @@ class ComposerStaticInitc4bfb1668c6d2242abaad16dcc9008cc
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitc4bfb1668c6d2242abaad16dcc9008cc::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitc4bfb1668c6d2242abaad16dcc9008cc::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitc4bfb1668c6d2242abaad16dcc9008cc::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitc4bfb1668c6d2242abaad16dcc9008cc::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit77a5a4d8d6e369a7586f8492ffccdd9f::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit77a5a4d8d6e369a7586f8492ffccdd9f::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit77a5a4d8d6e369a7586f8492ffccdd9f::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit77a5a4d8d6e369a7586f8492ffccdd9f::$classMap;
 
         }, null, ClassLoader::class);
     }
