@@ -74,7 +74,11 @@
                             </ul>
                         </li>
                     @endif
+                    @if(!Session::has('loggedIn')||session('loggedIn')!=true)
                     <li><a href="{{url('/loginfb')}}">Nico Login fb</a></li>
+                    @else
+                        <li><a href="{{url('/logoutfb')}}">Nico Logout fb</a></li>
+                    @endif
                 </ul>
             </div>
         </div>

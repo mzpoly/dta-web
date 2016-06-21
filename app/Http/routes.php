@@ -23,9 +23,11 @@ Route::get('/aboutthetest', function() {
     return view('aboutthetest');
 });
 
-Route::get('/passthetest', ['middleware' => 'auth',function() {
-    return view('passthetest');
-}]);
+Route::get('/passthetest', function() {
+    if(session('loggedIn')==true){return view('passthetest');}
+    else{return view('aboutthetest');}
+
+});
 
 Route::get('/create_question',['middleware' => 'auth','uses' => 'QuestionController@create']);
 Route::post('/create_question',['middleware' => 'auth','uses' => 'QuestionController@questionCreated']);
@@ -38,3 +40,4 @@ Route::post('/testquestion',['middleware'=>'auth','uses' => 'QuestionController@
 Route::get('/users',['middleware'=>'auth','uses' => 'DriverController@getAllDrivers']);
 Route::get('/questionadmin', ['middleware' => 'auth','uses'=>'QuestionController@getAllQuestions']);
 Route::get('/loginfb', 'DriverController@nicoLogin');
+Route::get('/logoutfb', 'DriverController@fbLogout');

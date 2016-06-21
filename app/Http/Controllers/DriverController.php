@@ -28,5 +28,6 @@ class DriverController extends Controller
     {
         $request->session()->forget('loggedIn');
         $request->session()->forget('fblogin');
+        return view('welcome');
     }
 }
