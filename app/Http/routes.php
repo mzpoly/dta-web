@@ -18,3 +18,26 @@ Route::get('/', function () {
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+
+Route::get('/aboutthetest', function() {
+    return view('aboutthetest');
+});
+
+Route::get('/passthetest', function() {
+    if(session('loggedIn')==true){return view('passthetest');}
+    else{return view('aboutthetest');}
+
+});
+
+Route::get('/create_question',['middleware' => 'auth','uses' => 'QuestionController@create']);
+Route::post('/create_question',['middleware' => 'auth','uses' => 'QuestionController@questionCreated']);
+
+//AUTH AS FB USER
+Route::get('/myscores', ['middleware' => 'auth','uses' => 'TestUserHController@show']);
+Route::post('/testquestion',['middleware'=>'auth','uses' => 'QuestionController@initTest']);
+Route::post('/testquestion',['middleware'=>'auth','uses' => 'QuestionController@nextQuestion']);
+
+Route::get('/users',['middleware'=>'auth','uses' => 'DriverController@getAllDrivers']);
+Route::get('/questionadmin', ['middleware' => 'auth','uses'=>'QuestionController@getAllQuestions']);
+Route::get('/loginfb', 'DriverController@nicoLogin');
+Route::get('/logoutfb', 'DriverController@fbLogout');

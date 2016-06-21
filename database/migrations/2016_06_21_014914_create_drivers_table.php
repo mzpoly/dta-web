@@ -17,6 +17,7 @@ class CreateDriversTable extends Migration
             $table->string('fblogin',64)->unique();
             $table->string('email',64)->unique();
             $table->binary('profilequestions');
+            $table->date('date');
             //$table->timestamps();
         });
     }

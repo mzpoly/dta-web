@@ -26,6 +26,7 @@
     </style>
 </head>
 <body id="app-layout">
+    <script src="js/fbscript.js"></script>
     <nav class="navbar navbar-default navbar-static-top">
         <div class="container">
             <div class="navbar-header">
@@ -40,7 +41,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Laravel
+                    <img src="images/logo.png" alt="Logo">
                 </a>
             </div>
 
@@ -48,6 +49,12 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/home') }}">Home</a></li>
+                    <li><a href="{{ url('/aboutthetest') }}">About the tests</a></li>
+                    <li><a href="{{ url('/passthetest') }}">Pass a mock test</a></li>
+                    @if (Auth::check())
+                        <li><a href="{{url('/myscores')}}">My Scores</a></li>
+                        <li><a href="{{url('/create_question')}}">Add a question</a></li>
+                    @endif
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -67,13 +74,18 @@
                             </ul>
                         </li>
                     @endif
+                    @if(!Session::has('loggedIn')||session('loggedIn')!=true)
+                    <li><a href="{{url('/loginfb')}}">Nico Login fb</a></li>
+                    @else
+                        <li><a href="{{url('/logoutfb')}}">Nico Logout fb</a></li>
+                    @endif
                 </ul>
             </div>
         </div>
     </nav>
 
     @yield('content')
-
+    <div id="status"></div>
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
