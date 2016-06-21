@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class QuestionController extends Controller
+class TestQuestionHController extends Controller
 {
     //
 }

@@ -14,5 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('template',function(){return view('template');});
-Route::get('template2',function(){return view('template2');});
+
+Route::auth();
+
+Route::get('/home', 'HomeController@index');
