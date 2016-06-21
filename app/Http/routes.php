@@ -24,4 +24,8 @@ Route::get('viewcq', function(){
 	return view('create_question');
 });
 
-Route::get('newquestion', 'QuestionController@postForm');
+Route::get('scores', function(){
+    return view('myscores');
+});
+
+//Route::get('newquestion', 'QuestionController@postForm');
