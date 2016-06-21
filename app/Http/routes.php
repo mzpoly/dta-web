@@ -18,3 +18,14 @@ Route::get('/', function () {
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+
+Route::get('/aboutthetest', function() {
+    return view('aboutthetest');
+});
+
+Route::get('/passthetest', ['middleware' => 'auth',function() {
+    return view('passthetest');
+}]);
+
+Route::get('/create_question',['middleware' => 'auth','uses' => 'QuestionController@create']);
+Route::post('/create_question',['middleware' => 'auth','uses' => 'QuestionController@questionCreated']);

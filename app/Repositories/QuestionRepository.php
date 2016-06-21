@@ -24,6 +24,7 @@ class QuestionRepository implements  QuestionRepositoryInterface
         $question->imageurl = empty($imageurl) ? null : $imageurl;
         $question->rightanswer=$rightanswer;
         $question->save();
+        return $question;
     }
 
     public function remove($questionid)

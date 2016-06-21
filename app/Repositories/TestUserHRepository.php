@@ -27,7 +27,12 @@ class TestUserHRepository implements TestUserHRepositoryInterface{
     }
     public function getQuestions($testid)
     {
-        $test= TestUserH::where('testid',$testid);
+
         return TestQuestionH::where('testid',$testid);
+    }
+
+    public function getTest($userid)
+    {
+        return TestUserH::where('userid',$userid);
     }
 }

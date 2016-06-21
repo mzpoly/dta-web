@@ -40,7 +40,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Laravel
+                    <img src="images/logo.png" alt="Logo">
                 </a>
             </div>
 
@@ -48,6 +48,12 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/home') }}">Home</a></li>
+                    <li><a href="{{ url('/aboutthetest') }}">About the tests</a></li>
+                    <li><a href="{{ url('/passthetest') }}">Pass a mock test</a></li>
+                    @if (Auth::check())
+                        <li><a href="{{url('/myscores')}}">My Scores</a></li>
+                        <li><a href="{{url('/create_question')}}">Add a question</a></li>
+                    @endif
                 </ul>
 
                 <!-- Right Side Of Navbar -->

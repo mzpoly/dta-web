@@ -7,6 +7,6 @@ interface ChoiceRepositoryInterface
 
     public function add($questionid,$answer,$choicenumber);
     public function remove($questionid,$choicenumber);
-    public function modifyanswer($questionid,$choicenumber);
+    public function modifyanswer($questionid, $answer, $choicenumber);
 
 }
