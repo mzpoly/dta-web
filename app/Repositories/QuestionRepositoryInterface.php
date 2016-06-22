@@ -11,5 +11,6 @@ interface QuestionRepositoryInterface
     public function getAllQuestions();
     public function getRandomQuestion();
     public function getQuestion($questionid);
+    public function getRightAnswer($questionid);
 
 }

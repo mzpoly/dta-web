@@ -14,7 +14,7 @@
                         <em> on the <?php echo date("F j, Y",strtotime($donnees->date)); ?></em>
                     </div>
                     <div>
-
+                        <a href="{{url('/viewtest?testnumber='.$donnees->testid)}}">View Test</a>
                     </div>
                 </div>
 

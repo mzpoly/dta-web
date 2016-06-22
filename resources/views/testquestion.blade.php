@@ -23,7 +23,7 @@
                         @endfor
                         <input name="nextquestionnb" value="{{$questionnb +1}}" type="hidden"/>
                         <input name="nextquestion" value="{{$nextquestion}}" type="hidden"/>
-                        {!! Form::submit('Envoyer !', ['class' => 'btn btn-info pull-right']) !!}
+                        {!! Form::submit('Submit', ['class' => 'btn btn-info pull-right']) !!}
                         {!! Form::close() !!}
                     </div>
                 </div>

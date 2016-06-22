@@ -61,5 +61,9 @@ class QuestionRepository implements  QuestionRepositoryInterface
     {
         return Question::where('id',$questionid)->firstorfail();
     }
+    public function getRightAnswer($questionid)
+    {
+        return Question::where('id',$questionid)->firstorfail()->rightanswer;
+    }
 
 }

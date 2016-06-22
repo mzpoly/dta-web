@@ -31,7 +31,7 @@ class TestUserHRepository implements TestUserHRepositoryInterface{
     public function getQuestions($testid)
     {
 
-        return TestQuestionH::where('testid',$testid);
+        return TestQuestionH::where('testid',$testid)->get();
     }
 
     public function getTests($fblogin)
@@ -39,5 +39,16 @@ class TestUserHRepository implements TestUserHRepositoryInterface{
         $driver= Driver::where('fblogin',$fblogin)->firstorfail();
         $userid = $driver->id;
         return TestUserH::where('userid',$userid)->orderBy('testid', 'desc')->get();
+    }
+    public function checkTest($testid,$fblogin)
+    {
+        $useridt=TestUserH::where('testid',$testid)->firstorfail()->userid;
+        var_dump($useridt);
+        $useridfb=Driver::where('fblogin',$fblogin)->firstorfail()->id;
+        return $useridt==$useridfb;
+    }
+    public function getTest($testid)
+    {
+        return TestUserH::where('testid',$testid)->firstorfail();
     }
 }

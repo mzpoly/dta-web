@@ -140,6 +140,7 @@ class QuestionController extends Controller
             ->with('questionlist',$q)
             ->with('rightanswerlist',$ra)
             ->with('useranswerlist',$ua)
-            ->with('score',$score);
+            ->with('score',$score)
+            ->with('nbquestions',$request->session()->get('nbquestions'));
     }
 }

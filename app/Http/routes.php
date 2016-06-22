@@ -33,6 +33,7 @@ Route::get('/myscores', ['middleware' => 'driver', 'uses' =>'TestUserHController
 Route::post('/inittest',['middleware'=>'driver','uses' => 'QuestionController@initTest']);
 Route::get('/inittest',['middleware'=>'driver',function() {return view('passthetest');}]);
 Route::post('/testquestion',['middleware'=>'driver','uses' => 'QuestionController@nextQuestion']);
+Route::get('/viewtest',['middleware' => 'driver', 'uses' =>'TestUserHController@viewTest']);
 
 Route::get('/test',function() {
     return view('testquestion');
