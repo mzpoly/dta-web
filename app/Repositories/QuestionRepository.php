@@ -50,4 +50,20 @@ class QuestionRepository implements  QuestionRepositoryInterface
         return Question::all();
     }
 
+    public function getRandomQuestion() // return question, it's id and total rows
+    {
+        $totalRows = Question::all()->count();
+        $questionid = rand(1,$totalRows);
+        return [Question::where('id','>=',$questionid)->firstorfail(),$questionid,$totalRows];
+    }
+
+    public function getQuestion($questionid)
+    {
+        return Question::where('id',$questionid)->firstorfail();
+    }
+    public function getRightAnswer($questionid)
+    {
+        return Question::where('id',$questionid)->firstorfail()->rightanswer;
+    }
+
 }

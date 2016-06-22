@@ -9,5 +9,8 @@ interface QuestionRepositoryInterface
     public function remove($questionid);
     public function modify($questionid,$questiontype,$questiontext,$nbofchoices,$imageurl,$rightanswer,$testtype);
     public function getAllQuestions();
+    public function getRandomQuestion();
+    public function getQuestion($questionid);
+    public function getRightAnswer($questionid);
 
 }

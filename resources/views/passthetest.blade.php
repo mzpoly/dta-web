@@ -6,14 +6,18 @@
             <div class="col-md-3 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <a href="{{ url('/') }}">BTT</a>
+                        {!! Form::open(['url' => 'inittest']) !!}
+                        <input type="submit" class="btn btn-default" name="testtype" value="BTT">
+                        {!! Form::close() !!}
                     </div>
                 </div>
             </div>
             <div class="col-md-3 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        FTT
+                        {!! Form::open(['url' => 'inittest']) !!}
+                        <input type="submit" class="btn btn-default" name="testtype" value="FTT">
+                        {!! Form::close() !!}
                     </div>
                 </div>
             </div>

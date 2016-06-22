@@ -23,19 +23,21 @@ Route::get('/aboutthetest', function() {
     return view('aboutthetest');
 });
 
-Route::get('/passthetest', function() {
-    if(session('loggedIn')==true){return view('passthetest');}
-    else{return view('aboutthetest');}
-
-});
+Route::get('/passthetest',['middleware' => 'driver', function() {return view('passthetest');}]);
 
 Route::get('/create_question',['middleware' => 'auth','uses' => 'QuestionController@create']);
 Route::post('/create_question',['middleware' => 'auth','uses' => 'QuestionController@questionCreated']);
 
 //AUTH AS FB USER
-Route::get('/myscores', ['middleware' => 'auth','uses' => 'TestUserHController@show']);
-Route::post('/testquestion',['middleware'=>'auth','uses' => 'QuestionController@initTest']);
-Route::post('/testquestion',['middleware'=>'auth','uses' => 'QuestionController@nextQuestion']);
+Route::get('/myscores', ['middleware' => 'driver', 'uses' =>'TestUserHController@showTests']);
+Route::post('/inittest',['middleware'=>'driver','uses' => 'QuestionController@initTest']);
+Route::get('/inittest',['middleware'=>'driver',function() {return view('passthetest');}]);
+Route::post('/testquestion',['middleware'=>'driver','uses' => 'QuestionController@nextQuestion']);
+Route::get('/viewtest',['middleware' => 'driver', 'uses' =>'TestUserHController@viewTest']);
+
+Route::get('/test',function() {
+    return view('testquestion');
+});
 
 Route::get('/users',['middleware'=>'auth','uses' => 'DriverController@getAllDrivers']);
 Route::get('/questionadmin', ['middleware' => 'auth','uses'=>'QuestionController@getAllQuestions']);

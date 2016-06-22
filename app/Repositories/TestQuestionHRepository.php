@@ -9,7 +9,7 @@ class TestQuestionHRepository implements TestQuestionHRepositoryInterface
 
     protected $test;
 
-    public function __construct(TestHistoryQ $test)
+    public function __construct(TestQuestionH $test)
     {
         $this->test = $test;
 

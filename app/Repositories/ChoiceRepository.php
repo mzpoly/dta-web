@@ -38,4 +38,9 @@ class ChoiceRepository implements  ChoiceRepositoryInterface
         $choice->answer = $answer;
         $choice->save();
     }
+
+    public function getChoice($questionid,$choicenumber)
+    {
+        return Choice::where(['questionid' => $questionid,'choicenumber'=>$choicenumber])->firstorfail();
+    }
 }
