@@ -17,7 +17,7 @@ class CreateTestquestionhistoryTable extends Migration
             $table->integer('testid');
             $table->integer('questionid');
             $table->integer('questionnumber');
-            $table->integer('usersanswer')->nullable();
+            $table->integer('useranswer')->nullable();
         });
     }
 

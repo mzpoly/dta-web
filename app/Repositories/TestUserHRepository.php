@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Driver;
 use App\TestUserH;
 use App\TestQuestionH;
 
@@ -15,7 +16,7 @@ class TestUserHRepository implements TestUserHRepositoryInterface{
         $this->test = $test;
 
     }
-    public function add($testtype,$userid,$date,$timespent,$score)
+    public function add($testtype,$userid,$date,$timespent,$score,$nbtotalquestions)
     {
         $test = new $this->test;
         $test->testtype=$testtype;
@@ -23,7 +24,9 @@ class TestUserHRepository implements TestUserHRepositoryInterface{
         $test->date=$date;
         $test->timespent = $timespent;
         $test->score = $score;
+        $test->nbtotalquestions = $nbtotalquestions;
         $test->save();
+        return $test->id;
     }
     public function getQuestions($testid)
     {
@@ -31,8 +34,10 @@ class TestUserHRepository implements TestUserHRepositoryInterface{
         return TestQuestionH::where('testid',$testid);
     }
 
-    public function getTests($userid)
+    public function getTests($fblogin)
     {
-        return TestUserH::where('userid',$userid);
+        $driver= Driver::where('fblogin',$fblogin)->firstorfail();
+        $userid = $driver->id;
+        return TestUserH::where('userid',$userid)->orderBy('testid', 'desc')->get();
     }
 }

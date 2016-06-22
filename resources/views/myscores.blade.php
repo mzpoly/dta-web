@@ -9,8 +9,13 @@
         @foreach($alldata as $donnees)
             <div class = 'panel panel-info'>
                 <div class = 'panel-heading'>
-                    <?php echo htmlspecialchars($donnees->testtype); ?>
-                    <em> at <?php echo $donnees->date; ?></em>
+                    <div>
+                        <?php echo htmlspecialchars($donnees->testtype); ?>
+                        <em> on the <?php echo date("F j, Y",strtotime($donnees->date)); ?></em>
+                    </div>
+                    <div>
+
+                    </div>
                 </div>
 
                 <div class = 'panel panel-body'>
@@ -24,7 +29,7 @@
                     echo $timeinhour . ' h ' . $minspent . ' m ' . $secspent . 'sec' ;
                     echo  ' and you scored ' ;
                     echo nl2br(htmlspecialchars($donnees->score));
-                    echo  '/20' ;
+                    echo  '/'.nl2br(htmlspecialchars($donnees->nbtotalquestions)) ;
                     ?>
                     <br />
 

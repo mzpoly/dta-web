@@ -51,9 +51,12 @@
                     <li><a href="{{ url('/home') }}">Home</a></li>
                     <li><a href="{{ url('/aboutthetest') }}">About the tests</a></li>
                     <li><a href="{{ url('/passthetest') }}">Pass a mock test</a></li>
-                    @if (Auth::check())
+                    @if (Session::has('loggedIn')&& session('loggedIn')==true)
                         <li><a href="{{url('/myscores')}}">My Scores</a></li>
+                    @endif
+                    @if (Auth::check())
                         <li><a href="{{url('/create_question')}}">Add a question</a></li>
+                        <li><a href="{{url('/users')}}">Users</a></li>
                     @endif
                 </ul>
 

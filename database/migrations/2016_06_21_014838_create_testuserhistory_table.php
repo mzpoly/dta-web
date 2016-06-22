@@ -19,6 +19,7 @@ class CreateTestuserhistoryTable extends Migration
             $table->date('date');
             $table->integer('timespent');
             $table->integer('score');
+            $table->integer('nbtotalquestions');
         });
     }
 

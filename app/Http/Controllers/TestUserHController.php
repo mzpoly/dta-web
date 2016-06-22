@@ -9,10 +9,12 @@ use App\Http\Requests;
 
 class TestUserHController extends Controller
 {
-    public function show(TestUserHRepository $testUserHRepository){
-        $userid=Auth::user();
-        $alldata=$testUserHRepository->getTests($userid);
-        return view('myscores')->with('alldata',$alldata);
+    public function showTests(TestUserHRepository $testUserHRepository,Request $request)
+    {
+        $fblogin = $request->session()->get('fblogin');
+        $alldata = $testUserHRepository->getTests($fblogin);
+        return view('myscores',['alldata'=> $alldata]);
+
 
     }
 }

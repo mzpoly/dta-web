@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Repositories\ChoiceRepository;
 use App\Repositories\QuestionRepository;
+use App\Repositories\TestQuestionHRepository;
+use App\Repositories\TestUserHRepository;
 use Illuminate\Http\Request;
-
+use DateTime;
 use App\Http\Requests\QuestionRequest;
 
 class QuestionController extends Controller
@@ -49,12 +51,95 @@ class QuestionController extends Controller
         $questionlist = $questionRepository->getAllQuestions();
         return view('questionadmin')->with('questionlist',$questionlist);
     }
-    public function initTest()
+    public function initTest(Request $request,QuestionRepository $questionRepository,ChoiceRepository $choiceRepository)
     {
+        $rq=$questionRepository->getRandomQuestion();
+        $question=$rq[0];
+        $request->session()->put('totalquestions',$rq[2]);
+        $key = $rq[2];
 
+        while(gmp_gcd($key,$rq[2])!=1){
+            $key = rand(1,$rq[2]);
+        }
+        $nextquestion=$rq[1]+$key;
+        if($nextquestion>$request->session()->get('totalquestions')){$nextquestion -= $request->session()->get('totalquestions');}
+        $nba=$question->nbofchoices;
+        $questiontext = $question->questiontext;
+        for($i=1;$i<$nba+1;$i++){$answer[$i]=$choiceRepository->getChoice($question->id,$i)->answer;}
+        $request -> session() -> put('questions',[1=>$question->id]);
+        $request -> session() -> put('rightanswer',[1=>$question->rightanswer]);
+        $request -> session() -> put('useranswer',[]);
+        $request-> session() -> put('testtype',$request->input('testtype'));
+        $request -> session() -> put('key',$key);
+        $request -> session() -> put('nbquestions',3);
+        return view('testquestion')
+            ->with('questionnb',1)
+            ->with('answer',$answer)
+            ->with('question',$questiontext)
+            ->with('nba',$nba)
+            ->with('nextquestion',$nextquestion)
+            ->with('questiontype',$question->questiontype);
     }
-    public function nextQuestion(Request $request)
+    public function nextQuestion(Request $request,QuestionRepository $questionRepository,ChoiceRepository $choiceRepository,TestUserHRepository $testUserHRepository,TestQuestionHRepository $testQuestionHRepository)
     {
+        if($request->input('nextquestionnb')>$request -> session() -> get('nbquestions')){
+            $useranswer = $request -> session() ->get('useranswer');
+            $useranswer[$request->input('nextquestionnb')-1] = $request->input('answer');
+            $request -> session() ->put('useranswer',$useranswer);
+            return $this->testScorePage($request,$testUserHRepository,$testQuestionHRepository);
+        }
+        $questionid = $request->input('nextquestion');
+        $question =$questionRepository -> getQuestion($questionid);
 
+        $nba=$question->nbofchoices;
+        $questiontext = $question->questiontext;
+        for($i=1;$i<$nba+1;$i++){$answer[$i]=$choiceRepository->getChoice($question->id,$i)->answer;}
+        $key= $request->session()->get("key");
+        $nextquestion=$questionid+$key;
+        if($nextquestion>$request->session()->get('totalquestions')){$nextquestion -= $request->session()->get('totalquestions');}
+
+        $rightanswer = $request -> session() ->get('rightanswer');
+        $rightanswer[$request->input('nextquestionnb')] = $question->rightanswer;
+        $request -> session() ->put('rightanswer',$rightanswer);
+
+        $questionsession = $request -> session() ->get('questions');
+        $questionsession[$request->input('nextquestionnb')] = $questionid;
+        $request -> session() ->put('questions',$questionsession);
+
+        $useranswer = $request -> session() ->get('useranswer');
+        $useranswer[$request->input('nextquestionnb')-1] = $request->input('answer');
+        $request -> session() ->put('useranswer',$useranswer);
+        
+        return view('testquestion')
+            ->with('questionnb',$request->input('nextquestionnb'))
+            ->with('answer',$answer)
+            ->with('question',$questiontext)
+            ->with('nba',$nba)
+            ->with('nextquestion',$nextquestion)
+            ->with('questiontype',$question->questiontype);
+    }
+
+    public function testScorePage(Request $request,TestUserHRepository $testUserHRepository,TestQuestionHRepository $testQuestionHRepository){
+        $q=$request -> session() -> get('questions');
+        $ra=$request -> session() -> get('rightanswer');
+        $ua=$request -> session() -> get('useranswer');
+        $score=0;
+        for($i=1;$i<$request -> session() -> get('nbquestions')+1;$i++){
+            if($ra[$i]==$ua[$i]){
+                $score++;
+            }
+        }
+
+        $testid=$testUserHRepository->add($request->session()->get('testtype'),1,new DateTime(),200,$score,$request -> session() -> get('nbquestions'));
+        for($i=1;$i<$request -> session() -> get('nbquestions')+1;$i++){
+            $testQuestionHRepository->add($testid,$q[$i],$i,$ua[$i]);
+        }
+
+
+        return view('testscore')
+            ->with('questionlist',$q)
+            ->with('rightanswerlist',$ra)
+            ->with('useranswerlist',$ua)
+            ->with('score',$score);
     }
 }
