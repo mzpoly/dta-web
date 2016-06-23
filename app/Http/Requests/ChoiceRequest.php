@@ -25,7 +25,7 @@ class ChoiceRequest extends Request
     {
         return [
             'questionid' => 'required|numeric',
-            'answer' => 'required|string',
+            'answer' => 'string',
             'choicenumber' => 'required|digits:1'
         ];
     }

@@ -5,5 +5,8 @@ namespace App\Repositories;
 interface ProfilequestionsRepositoryInterface
 {
 
-    public function save($profquesdata);
+    public function add($profilequestion);
+    public function delete($id);
+    public function modify($id,$profilequestion);
+
 }

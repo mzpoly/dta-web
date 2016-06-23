@@ -27,7 +27,8 @@ class QuestionRequest extends Request
             'questiontype' => 'required',
             'questiontext' => 'required|string',
             'nbofchoices' => 'required|digits:1',
-            'rightanswer' => 'required|digits:1'
+            'rightanswer' => 'required|digits:1',
+            'testtype'=> 'required'
         ];
     }
 }

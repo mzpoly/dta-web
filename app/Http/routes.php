@@ -10,31 +10,42 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+
 Route::get('/', function () {
     return view('welcome');
 });
 
+Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('login', 'UsersController@getForm');
-Route::post('login/form', 'UsersController@postForm');
-
-Route::get('viewcq', function(){
-	return view('create_question');
+Route::get('/aboutthetest', function() {
+    return view('aboutthetest');
 });
 
-Route::get('scores', function(){
-    return view('myscores');
+Route::get('/passthetest', function() {
+    if(session('loggedIn')==true){return view('passthetest');}
+    else{return view('aboutthetest');}
+
 });
 
-Route::get('question/{nbquestion}/{questiontype}', function($nbquestion, $questiontype){
-    return view('template1')->with(['nbques' => $nbquestion , 'type' => $questiontype ]);
-});
+Route::get('/questionadmin.create',['middleware' => 'auth','uses' => 'QuestionController@create']);
+Route::post('/questionadmin.create',['middleware' => 'auth','uses' => 'QuestionController@questionCreated']);
+Route::post('/modify_question',['middleware' => 'auth','uses' => 'QuestionController@modifyQuestion']);
+
+//AUTH AS FB USER
+Route::get('/myscores', ['middleware' => 'auth','uses' => 'TestUserHController@show']);
+Route::post('/testquestion',['middleware'=>'auth','uses' => 'QuestionController@initTest']);
+Route::post('/testquestion',['middleware'=>'auth','uses' => 'QuestionController@nextQuestion']);
+
+Route::get('/users',['middleware'=>'auth','uses' => 'DriverController@getAllDrivers']);
+
+//question administrator part
+Route::get('/questionadmin', ['middleware' => 'auth','uses'=>'QuestionController@getAllQuestions']);
+Route::get('/questionadmin.show/{questionid}', ['middleware' => 'auth','uses'=>'QuestionController@showOneQuestion']);
+Route::get('/questionadmin.edit/{questionid}', ['middleware' => 'auth','uses'=>'QuestionController@editOneQuestion']);
+Route::get('/questionadmin.delete/{questionid}', ['middleware' => 'auth','uses'=>'QuestionController@remove']);
 
 
-Route::get('checkquestion', function(){
-    return view('checkquestion');
-});
-
-//Route::get('newquestion', 'QuestionController@postForm');
+Route::get('/loginfb', 'DriverController@nicoLogin');
+Route::get('/logoutfb', 'DriverController@fbLogout');
