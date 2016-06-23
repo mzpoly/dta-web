@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\ChoiceRepository;
 use App\Repositories\QuestionRepository;
 use App\Repositories\TestUserHRepository;
 use Illuminate\Http\Request;
@@ -19,7 +20,7 @@ class TestUserHController extends Controller
 
     }
 
-    public function viewTest(Request $request,TestUserHRepository $testUserHRepository, QuestionRepository $questionRepository)
+    public function viewTest(Request $request,ChoiceRepository $choiceRepository,TestUserHRepository $testUserHRepository, QuestionRepository $questionRepository)
     {
         $testnb=Input::get('testnumber');
 
@@ -31,12 +32,21 @@ class TestUserHController extends Controller
                 $ua[$q->questionnumber]=$q->useranswer;
                 $questionlist[$q->questionnumber]=$q->questionid;
                 $ra[$q->questionnumber]=$questionRepository->getRightAnswer($q->questionid);
+                $question=$questionRepository->getQuestion($q->questionid);
+                $questiontext[$q->questionnumber] = $question->questiontext;
+                $nba[$q->questionnumber] = $question->nbofchoices;
+                for($j=1;$j<$question->nbofchoices+1;$j++){
+                    $choice=$choiceRepository->getChoice($q->questionid,$j);
+                    $answerlist[$q->questionnumber][$j]=$choice->answer;
+                }
             }
             return view('testscore')
                 ->with('nbquestions',$test->nbtotalquestions)
                 ->with('rightanswerlist',$ra)
                 ->with('useranswerlist',$ua)
-                ->with('questionlist',$questionlist)
+                ->with('questiontext',$questiontext)
+                ->with('answerlist',$answerlist)
+                ->with('nba',$nba)
                 ->with('score',$test->score);
         }
         else

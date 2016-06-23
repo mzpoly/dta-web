@@ -8,7 +8,7 @@ use App\Repositories\TestQuestionHRepository;
 use App\Repositories\TestUserHRepository;
 use Illuminate\Http\Request;
 use DateTime;
-use App\Http\Requests\QuestionRequest;
+use Illuminate\Support\Facades\Cookie;
 
 class QuestionController extends Controller
 {
@@ -34,9 +34,10 @@ class QuestionController extends Controller
         return view('questioncreated');
     }
 
-    public function modifyQuestion(Request $request,QuestionRepository $questionRepository,ChoiceRepository $choiceRepository)
+    public function modifyQuestion(Request $request,QuestionRepository $questionRepository)
     {
         $questionRepository->modify(
+            $request->input('questionid'),
             $request->input('questiontype'),
             $request->input('questiontext'),
             $request->input('nbq'),
@@ -53,6 +54,7 @@ class QuestionController extends Controller
     }
     public function initTest(Request $request,QuestionRepository $questionRepository,ChoiceRepository $choiceRepository)
     {
+
         $rq=$questionRepository->getRandomQuestion();
         $question=$rq[0];
         $request->session()->put('totalquestions',$rq[2]);
@@ -86,7 +88,7 @@ class QuestionController extends Controller
             $useranswer = $request -> session() ->get('useranswer');
             $useranswer[$request->input('nextquestionnb')-1] = $request->input('answer');
             $request -> session() ->put('useranswer',$useranswer);
-            return $this->testScorePage($request,$testUserHRepository,$testQuestionHRepository);
+            return $this->testScorePage($request,$questionRepository,$choiceRepository,$testUserHRepository,$testQuestionHRepository);
         }
         $questionid = $request->input('nextquestion');
         $question =$questionRepository -> getQuestion($questionid);
@@ -106,10 +108,10 @@ class QuestionController extends Controller
         $questionsession[$request->input('nextquestionnb')] = $questionid;
         $request -> session() ->put('questions',$questionsession);
 
+
         $useranswer = $request -> session() ->get('useranswer');
         $useranswer[$request->input('nextquestionnb')-1] = $request->input('answer');
         $request -> session() ->put('useranswer',$useranswer);
-        
         return view('testquestion')
             ->with('questionnb',$request->input('nextquestionnb'))
             ->with('answer',$answer)
@@ -119,10 +121,11 @@ class QuestionController extends Controller
             ->with('questiontype',$question->questiontype);
     }
 
-    public function testScorePage(Request $request,TestUserHRepository $testUserHRepository,TestQuestionHRepository $testQuestionHRepository){
+    public function testScorePage(Request $request,QuestionRepository $questionRepository,ChoiceRepository $choiceRepository,TestUserHRepository $testUserHRepository,TestQuestionHRepository $testQuestionHRepository  ){
         $q=$request -> session() -> get('questions');
         $ra=$request -> session() -> get('rightanswer');
         $ua=$request -> session() -> get('useranswer');
+        $nbquestions = $request->session()->get('nbquestions');
         $score=0;
         for($i=1;$i<$request -> session() -> get('nbquestions')+1;$i++){
             if($ra[$i]==$ua[$i]){
@@ -130,17 +133,30 @@ class QuestionController extends Controller
             }
         }
 
-        $testid=$testUserHRepository->add($request->session()->get('testtype'),1,new DateTime(),200,$score,$request -> session() -> get('nbquestions'));
+        $timespent = abs((new DateTime())->getTimeStamp()-DateTime::createFromFormat('D, d M Y H:i:s e' ,$_COOKIE['myClock'])->getTimestamp());
+
+        $testid=$testUserHRepository->add($request->session()->get('testtype'),1,new DateTime(),$timespent,$score,$request -> session() -> get('nbquestions'));
         for($i=1;$i<$request -> session() -> get('nbquestions')+1;$i++){
             $testQuestionHRepository->add($testid,$q[$i],$i,$ua[$i]);
-        }
+            $question=$questionRepository->getQuestion($q[$i]);
+            $questiontext[$i] = $question->questiontext;
+            $nba[$i] = $question->nbofchoices;
+            for($j=1;$j<$question->nbofchoices+1;$j++){
+                $choice=$choiceRepository->getChoice($q[$i],$j);
+                $answerlist[$i][$j]=$choice->answer;
+            }
 
+        }
+        
 
         return view('testscore')
-            ->with('questionlist',$q)
+            ->with('questiontext',$questiontext)
+            ->with('answerlist',$answerlist)
+            ->with('nba',$nba)
             ->with('rightanswerlist',$ra)
             ->with('useranswerlist',$ua)
             ->with('score',$score)
-            ->with('nbquestions',$request->session()->get('nbquestions'));
+            ->with('nbquestions',$nbquestions);
     }
+
 }

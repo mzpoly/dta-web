@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="col-sm-offset-3 col-sm-6">
-        <div class = 'alert-success'>
+        <div>
             <h2>Here are your results !</h2>
         </div>
 

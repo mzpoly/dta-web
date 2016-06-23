@@ -28,9 +28,13 @@ class QuestionRepository implements  QuestionRepositoryInterface
         return $question;
     }
 
-    public function remove($questionid)
+    public function delete($questionid)
     {
         $question = Question::where('id',$questionid);
+        $choices = Choice::where('questionid',$questionid);
+        foreach($choices as $choice){
+            $choice->delete();
+        }
         $question->delete();
     }
     public function modify($questionid,$questiontype,$questiontext,$nbofchoices,$imageurl,$rightanswer,$testtype)

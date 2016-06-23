@@ -64,8 +64,6 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -77,10 +75,12 @@
                             </ul>
                         </li>
                     @endif
-                    @if(!Session::has('loggedIn')||session('loggedIn')!=true)
-                    <li><a href="{{url('/loginfb')}}">Nico Login fb</a></li>
-                    @else
-                        <li><a href="{{url('/logoutfb')}}">Nico Logout fb</a></li>
+                    @if(Auth::guest())
+                        @if((!Session::has('loggedIn')||session('loggedIn')!=true))
+                        <li><a href="{{url('/loginfb')}}">Nico Login fb</a></li>
+                        @else
+                            <li><a href="{{url('/logoutfb')}}">Nico Logout fb</a></li>
+                        @endif
                     @endif
                 </ul>
             </div>
