@@ -49,3 +49,8 @@ Route::get('/questionadmin.delete/{questionid}', ['middleware' => 'auth','uses'=
 
 Route::get('/loginfb', 'DriverController@nicoLogin');
 Route::get('/logoutfb', 'DriverController@fbLogout');
+
+//uploading file
+Route::get('/questionadminimages', function (){
+    return view('questionadminimages');
+});

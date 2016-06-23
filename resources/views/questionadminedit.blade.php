@@ -8,7 +8,7 @@
 
             <div class="panel-body" id = "divbody">
 
-                {!! Form::open(['url' => 'modify_question']) !!}
+                {!! Form::open(['url' => 'modify_question', 'enctype' => 'multipart/form-data']) !!}
 
 
                 <br>
@@ -204,7 +204,9 @@
 
                 <br>
                 <div class="row">
-                    <input type="file" name="imageurl" /> <div id="prev"></div>
+                    <label for="imageurl">place file here (JPG, PNG, GIF | max. 1 Mo) :</label>
+                    <input type="file" name="imageurl" />
+                    <p><strong>current question image/gif</strong> : <img src={{url('questionadminimages/image-question-'.$question->id)}} alt="illustration" style="width:150px;height:100px;"> </p>
                 </div>
 
                 <br><br>

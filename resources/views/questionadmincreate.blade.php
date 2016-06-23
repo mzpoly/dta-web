@@ -8,7 +8,7 @@
 
             <div class="panel-body" id = "divbody">
 
-                {!! Form::open(['url' => 'create_question', 'enctype' => 'multipart/form-data']) !!}
+                {!! Form::open(['url' => 'questionadmin.create', 'enctype' => 'multipart/form-data']) !!}
 
 
                 <br>

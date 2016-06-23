@@ -17,6 +17,8 @@
 
                 <p><strong>Right answer</strong> : {{ $question->rightanswer }} </p>
 
+                <p><strong>question image/gif</strong> <img src={{url('questionadminimages/image-question-'.$question->id)}} alt="illustration" style="width:304px;height:228px;"> </p>
+
             </div>
         </div>
         <br>
