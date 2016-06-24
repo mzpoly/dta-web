@@ -56,6 +56,8 @@ trait AuthenticatesUsers
      */
     public function login(Request $request)
     {
+        $request->session()->forget("loggedIn");
+        $request->session()->forget("fblogin");
         $this->validateLogin($request);
 
         // If the class is using the ThrottlesLogins trait, we can automatically throttle

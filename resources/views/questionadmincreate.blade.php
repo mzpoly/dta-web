@@ -8,7 +8,7 @@
 
             <div class="panel-body" id = "divbody">
 
-                {!! Form::open(['url' => 'create_question']) !!}
+                {!! Form::open(['url' => 'questionadmin.create', 'enctype' => 'multipart/form-data']) !!}
 
 
                 <br>
@@ -50,7 +50,6 @@
 
                 <script type="text/javascript">
                     var numbans = 3;
-
                     function handleClick(myRadio) {
                         numbans = myRadio.value;
                         if (numbans == 3){
@@ -72,7 +71,6 @@
                             div5.style.display = "block";
                         }
                     }
-
                 </script>
                 <div class="row">
                     <div class="col-sm-3">
@@ -89,12 +87,17 @@
 
                 <br>
                 <div class="row">
-                    <input type="file" name="imageurl" /> <div id="prev"></div>
+                    <label for="imageurl">place file here (JPG, PNG, GIF | max. 1 Mo) :</label>
+                    <input type="file" name="imageurl" />
                 </div>
 
                 <br><br>
                 {!! Form::submit('Envoyer !', ['class' => 'btn btn-info pull-right']) !!}
                 {!! Form::close() !!}
+
+                <a href="{{url('questionadmin')}}" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-circle-arrow-left"></span> Return to list
+                </a>
             </div>
         </div>
     </div>

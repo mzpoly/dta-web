@@ -10,6 +10,7 @@
                     <div class="panel-body">
 
                         <a href="{{url('/create_question')}}">Create a new question</a>
+                        <a href="{{url('/questionadmin')}}">See questions</a>
                     </div>
                 </div>
             </div>

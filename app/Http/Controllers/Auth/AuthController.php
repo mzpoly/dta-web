@@ -54,7 +54,6 @@ class AuthController extends Controller
             'password' => 'required|min:6|confirmed',
         ]);
     }
-
     /**
      * Create a new user instance after a valid registration.
      *

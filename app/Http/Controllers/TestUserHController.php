@@ -23,9 +23,9 @@ class TestUserHController extends Controller
     public function viewTest(Request $request,ChoiceRepository $choiceRepository,TestUserHRepository $testUserHRepository, QuestionRepository $questionRepository)
     {
         $testnb=Input::get('testnumber');
-
         if($testUserHRepository->checkTest($testnb,$request->session()->get('fblogin')))
         {
+
             $test=$testUserHRepository->getTest($testnb);
             $testq=$testUserHRepository->getQuestions($testnb);
             foreach($testq as $q){
@@ -40,6 +40,7 @@ class TestUserHController extends Controller
                     $answerlist[$q->questionnumber][$j]=$choice->answer;
                 }
             }
+
             return view('testscore')
                 ->with('nbquestions',$test->nbtotalquestions)
                 ->with('rightanswerlist',$ra)
@@ -47,7 +48,8 @@ class TestUserHController extends Controller
                 ->with('questiontext',$questiontext)
                 ->with('answerlist',$answerlist)
                 ->with('nba',$nba)
-                ->with('score',$test->score);
+                ->with('score',$test->score)
+                ->with('timespent',$test->timespent);
         }
         else
         {

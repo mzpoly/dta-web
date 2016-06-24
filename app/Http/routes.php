@@ -25,8 +25,7 @@ Route::get('/aboutthetest', function() {
 
 Route::get('/passthetest',['middleware' => 'driver', function() {return view('passthetest');}]);
 
-Route::get('/create_question',['middleware' => 'auth','uses' => 'QuestionController@create']);
-Route::post('/create_question',['middleware' => 'auth','uses' => 'QuestionController@questionCreated']);
+
 
 //AUTH AS FB USER
 Route::get('/myscores', ['middleware' => 'driver', 'uses' =>'TestUserHController@showTests']);
@@ -41,5 +40,13 @@ Route::get('/test',function() {
 
 Route::get('/users',['middleware'=>'auth','uses' => 'DriverController@getAllDrivers']);
 Route::get('/questionadmin', ['middleware' => 'auth','uses'=>'QuestionController@getAllQuestions']);
+Route::get('/questionadmin.create/',['middleware' => 'auth','uses' => 'QuestionController@create']);
+Route::post('/questionadmin.create/',['middleware' => 'auth','uses' => 'QuestionController@questionCreated']);
+Route::post('/modify_question',['middleware' => 'auth','uses' => 'QuestionController@modifyQuestion']);
+Route::get('/questionadmin.show/{questionid}', ['middleware' => 'auth','uses'=>'QuestionController@showOneQuestion']);
+Route::get('/questionadmin.edit/{questionid}', ['middleware' => 'auth','uses'=>'QuestionController@editOneQuestion']);
+Route::get('/questionadmin.delete/{questionid}', ['middleware' => 'auth','uses'=>'QuestionController@remove']);
+
+
 Route::get('/loginfb', 'DriverController@nicoLogin');
 Route::get('/logoutfb', 'DriverController@fbLogout');

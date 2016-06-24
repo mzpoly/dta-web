@@ -55,7 +55,7 @@
                         <li><a href="{{url('/myscores')}}">My Scores</a></li>
                     @endif
                     @if (Auth::check())
-                        <li><a href="{{url('/create_question')}}">Add a question</a></li>
+                        <li><a href="{{url('/questionadmin')}}">Manage questions</a></li>
                         <li><a href="{{url('/users')}}">Users</a></li>
                     @endif
                 </ul>

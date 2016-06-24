@@ -18,21 +18,20 @@
             <tbody>
             @foreach ($questionlist as $question)
                 <tr>
+
                     <td>{!! $question->id !!}</td>
                     <td class="text-primary"><strong>{!! $question->questiontext !!}</strong></td>
-                    <td>{!! link_to_route('questionadmin.show', 'look', [$question->id], ['class' => 'btn btn-success btn-block']) !!}</td>
-                    <td>{!! link_to_route('questionadmin.edit', 'update', [$qustion->id], ['class' => 'btn btn-warning btn-block']) !!}</td>
-                    <td>
-                        {!! Form::open(['method' => 'DELETE', 'route' => ['user.destroy', $user->id]]) !!}
-                        {!! Form::submit('Remove', ['class' => 'btn btn-danger btn-block', 'onclick' => 'return confirm(\'Do you really wish to remove that question ?\')']) !!}
-                        {!! Form::close() !!}
-                    </td>
+                    <td><a href ="{{url('/questionadmin.show/'. $question->id )}}"> <input class = 'btn btn-success pull-block' value="see question" >  </a></td>
+                    <td><a href ="{{url('/questionadmin.edit/'. $question->id )}}"> <input class = 'btn btn-warning pull-block' value="update question">  </a></td>
+                    <td><a href ="{{url('/questionadmin.delete/'. $question->id )}}"> <input class = 'btn btn-danger btn-block' value="delete question">  </a></td>
+
+
                 </tr>
             @endforeach
             </tbody>
         </table>
     </div>
-    {!! link_to_route('questionadmin.create', 'add a question', [], ['class' => 'btn btn-info pull-right']) !!}
-    {!! $links !!}
+    <a href ="{{url('/questionadmin.create/')}}"> <input class = 'btn btn-info pull-right' value ='add a question'> </a>
+
     </div>
 @endsection

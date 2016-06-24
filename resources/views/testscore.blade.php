@@ -1,14 +1,7 @@
 @extends('layouts.app')
 @section('content')
-    <script>
-        var name='myClock';
-        var value = "; " + document.cookie;
-        var parts = value.split("; " + name + "=");
-        if (parts.length == 2)
-            begin=parts.pop().split(";").shift();
-        if(document.cookie && document.cookie.match('myClock')){
-            document.cookie = 'myClock=' + begin + '; path=/;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-        }
+    <script src="js/deletecookie.js">
+
     </script>
     <div class="container">
         <div class="row">
@@ -25,7 +18,15 @@
                     </div>
                     <div class="panel-body">
                         <div>
-                            Final score : {{$score}}/{{$nbquestions}}
+                            <?php
+                            $timeinsec =$timespent;
+                            $secspent = $timeinsec % 60;
+                            $timeinmin = ($timeinsec-$secspent) / 60;
+                            $minspent = $timeinmin % 60;
+                            $timeinhour = ($timeinmin - $minspent ) / 60;
+                                ?>
+                            Final score : {{$score}}/{{$nbquestions}} <br>
+                            Time spent : {{$timeinhour}} h {{($minspent)}} m {{ $secspent}} s
                         </div>
                         <br>
 

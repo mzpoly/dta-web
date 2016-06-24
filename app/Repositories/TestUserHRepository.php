@@ -43,7 +43,6 @@ class TestUserHRepository implements TestUserHRepositoryInterface{
     public function checkTest($testid,$fblogin)
     {
         $useridt=TestUserH::where('testid',$testid)->firstorfail()->userid;
-        var_dump($useridt);
         $useridfb=Driver::where('fblogin',$fblogin)->firstorfail()->id;
         return $useridt==$useridfb;
     }

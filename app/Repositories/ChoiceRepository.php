@@ -41,6 +41,19 @@ class ChoiceRepository implements  ChoiceRepositoryInterface
 
     public function getChoice($questionid,$choicenumber)
     {
-        return Choice::where(['questionid' => $questionid,'choicenumber'=>$choicenumber])->firstorfail();
+        return Choice::where(['questionid' => $questionid,'choicenumber'=>$choicenumber])->first();
+    }
+
+    public function getAnswersOfQuestion( $questionid){ //return all choices
+        $choice = Choice::where('questionid', $questionid)->get();
+        return $choice;
+    }
+
+    public function clearAnswersOfQuestion($questionid)
+    {
+        $choices = Choice::where('questionid',$questionid)->get();
+        foreach ($choices  as $choice) {
+            $choice->delete();
+        }
     }
 }
