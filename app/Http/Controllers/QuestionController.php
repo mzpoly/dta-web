@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Repositories\ChoiceRepository;
 use App\Repositories\QuestionRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 
 class QuestionController extends Controller
@@ -47,7 +48,8 @@ class QuestionController extends Controller
 
         $questionid = $request->input('questionid');
 
-        $request->file('imageurl')->move('questionadminimages', 'image-question-'.$questionid.'-update');
+        Storage::delete(url('questionadminimages/image-question-'.$questionid));
+        $request->file('imageurl')->move('questionadminimages', 'image-question-'.$questionid);
 
 
          $choiceRepository->clearAnswersOfQuestion($request->input('questionid'));

@@ -125,26 +125,45 @@
 
                 </script>
 
+               <?php
+                    if (($question->nbofchoices) == 4 ){
+                ?>
                 <script>
-                    if({{$question->nbofchoices}} == 4 )
+                        var div4 = document.getElementById('A4');
+                        div4.value="{{$answer4->answer}}";
+                </script>
+                <?php
+                    }
+                ?>
+
+
+                <?php
+                    if (($question->nbofchoices) == 5 ){
+                ?>
+                <script>
+                        var div4 = document.getElementById('A4');
+                        div4.value="{{$answer4->answer}}";
+                        var div5 = document.getElementById('A5');
+                        div5.value="{{$answer5->answer}}";
+                </script>
+                <?php
+                    }
+                ?>
+
+
+                <script>
+                    if({{($question->nbofchoices) == 4}})
                     {
                         document.getElementById("r1op").checked = false;
                         document.getElementById("r2op").checked = true;
                         document.getElementById("r3op").checked = false;
-                        var div4 = document.getElementById('A4');
-                        div4.value="$answer4->answer";
-
                     }
 
-                    if({{$question->nbofchoices}} == 5 )
+                    if({{$question->nbofchoices == 5}})
                     {
                         document.getElementById("r1op").checked = false;
                         document.getElementById("r2op").checked = false;
                         document.getElementById("r3op").checked = true;
-                        var div4 = document.getElementById('A4');
-                        div4.value="$answer4->answer";
-                        var div5 = document.getElementById('A5');
-                        div5.value="$answer5->answer";
                     }
                 </script>
 
